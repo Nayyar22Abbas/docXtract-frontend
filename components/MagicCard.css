@@ -1,0 +1,64 @@
+.magic-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.magic-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Border glow effect */
+.magic-card--border-glow {
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+}
+
+.magic-card--border-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: radial-gradient(
+    var(--glow-radius, 300px) circle at var(--glow-x, 50%) var(--glow-y, 50%),
+    rgba(59, 130, 246, calc(var(--glow-intensity, 0) * 0.8)) 0%,
+    rgba(59, 130, 246, calc(var(--glow-intensity, 0) * 0.4)) 30%,
+    transparent 60%
+  );
+  border-radius: inherit;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.magic-card--border-glow:hover {
+  border-color: rgba(59, 130, 246, 0.5) !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(59, 130, 246, 0.15);
+}
+
+/* Particle styles */
+.magic-particle {
+  will-change: transform, opacity;
+}
+
+.magic-particle::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: rgba(59, 130, 246, 0.2);
+  border-radius: 50%;
+  z-index: -1;
+}
